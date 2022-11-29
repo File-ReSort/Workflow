@@ -1,6 +1,5 @@
 import boto3
 
-
 # function definition
 def lambda_handler(event, context):
     dynamodb = boto3.resource('dynamodb')
@@ -14,7 +13,8 @@ def lambda_handler(event, context):
           "FileName": event["FileName"],
           "BucketFileLocation": event["BucketFileLocation"],
           "Name": event["Name"],
-          "UploadDate": event["UploadDate"]
+          "UploadDate": event["UploadDate"],
+          "Annotations": event["Annotations"],
         }
     )
     return response
