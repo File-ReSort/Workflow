@@ -2,6 +2,9 @@ import boto3
 
 ID = "ID"
 NAME = "Name"
+FILENAME = "FileName"
+UPLOADDATE = "UploadDate"
+LASTEDITDATE = "LastEditDate"
 
 # function definition
 def lambda_handler(event, context):
@@ -9,7 +12,7 @@ def lambda_handler(event, context):
 
     table = dynamodb.Table('documents')
 
-    response = table.scan(AttributesToGet=[ID, NAME])
+    response = table.scan(AttributesToGet=[ID, NAME, FILENAME, UPLOADDATE, LASTEDITDATE])
     data = response['Items']
     while 'LastEvaluatedKey' in response:
         response = table.scan(ExclusiveStartKey=response['LastEvaluatedKey'])
